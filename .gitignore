@@ -1,0 +1,5 @@
+node_modules/
+dist-lib/
+*.log
+.pettylint-baseline.json
+.DS_Store

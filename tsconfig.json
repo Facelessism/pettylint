@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ES2022"
+    ],
+    "strict": true,
+    "types": [
+      "node"
+    ],
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-lib",
+    "tests/fixtures"
+  ]
+}

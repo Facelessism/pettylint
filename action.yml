@@ -1,0 +1,71 @@
+name: "PettyLint"
+description: "A lightweight, deterministic static-analysis engine that detects small, concrete, review-worthy code issues in JavaScript/TypeScript pull requests."
+author: "PettyLint"
+branding:
+  icon: "alert-triangle"
+  color: "yellow"
+
+inputs:
+  github-token:
+    description: "Token used to read PR file lists and post the summary comment. Defaults to the workflow's GITHUB_TOKEN."
+    required: false
+    default: ${{ github.token }}
+  rules:
+    description: >
+      YAML fragment overriding rule severities, e.g. "console-log: warning\ndebugger: error".
+      Merged over the repository's config file, if present.
+    required: false
+    default: ""
+  config:
+    description: "Path to a specific PettyLint configuration file, relative to the repository root. If unset, PettyLint searches the repository root for .pettylintrc.yml or pettylint.yml."
+    required: false
+    default: ""
+  changed-only:
+    description: >
+      Only report findings on added/changed lines. Left unset, this falls back
+      to the repository's config file, or true if that doesn't specify it
+      either (recommended for pull requests, since PettyLint should never
+      dump every historical finding on you the first time it's installed).
+    required: false
+    default: ""
+  fail-on:
+    description: >
+      Minimum severity that fails the Action: error | warning | notice | never.
+      Left unset, this falls back to the repository's config file, or "error"
+      if neither is set.
+    required: false
+    default: ""
+  baseline:
+    description: "Path to a baseline file. Findings already present in the baseline are not reported as new."
+    required: false
+    default: ""
+  format:
+    description: >
+      Additional log output format: pretty | json | sarif. Left unset, this
+      falls back to the repository's config file, or "pretty" if neither is set.
+    required: false
+    default: ""
+  comment:
+    description: "Whether to create/update the single PettyLint PR summary comment."
+    required: false
+    default: "true"
+  ignore:
+    description: "Newline-separated glob patterns to exclude from analysis, in addition to the config file's ignore list."
+    required: false
+    default: ""
+
+outputs:
+  findings:
+    description: "JSON array of all reported findings."
+  errors:
+    description: "Number of error-severity findings."
+  warnings:
+    description: "Number of warning-severity findings."
+  notices:
+    description: "Number of notice-severity findings."
+  failed:
+    description: "Whether findings met or exceeded the fail-on threshold."
+
+runs:
+  using: "node24"
+  main: "dist/index.js"
