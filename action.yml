@@ -1,5 +1,5 @@
 name: "PettyLint"
-description: "A lightweight, deterministic static-analysis engine that detects small, concrete, review-worthy code issues in JavaScript/TypeScript pull requests."
+description: "A lightweight static-analysis engine that detects review-worthy code issues in JS/TS PRs."
 author: "PettyLint"
 branding:
   icon: "alert-triangle"
