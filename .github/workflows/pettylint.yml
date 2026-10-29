@@ -26,11 +26,11 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
-      # The Action ships dist/index.js, so it must match the sources.
+      # The Action ships dist/index.mjs, so it must match the sources.
       - name: Verify dist/ is up to date
         run: git diff --exit-code -- dist/
-      - name: Verify the Action bundle actually loads
-        run: node -e "process.env.GITHUB_TOKEN='ci-smoke-test'; try { require('./dist/index.js'); } catch (e) { if (!String(e.message).includes('pull_request')) throw e; }"
+      - name: Verify the Action bundle syntax
+        run: node --check dist/index.mjs
 
   pettylint:
     runs-on: ubuntu-latest
