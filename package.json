@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "build": "npm run build:lib && npm run build:action",
     "build:lib": "tsc -p tsconfig.build.json",
-    "build:action": "ncc build src/index.ts -o dist --minify && node -e \"require('fs').writeFileSync('dist/package.json', JSON.stringify({type:'commonjs'},null,2)+String.fromCharCode(10))\"",
+    "build:action": "ncc build src/index.ts -o dist --minify && node scripts/finalize-action-build.js",
     "pettylint": "tsx src/cli.ts"
   },
   "dependencies": {
